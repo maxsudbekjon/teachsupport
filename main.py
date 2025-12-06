@@ -1,10 +1,16 @@
 from fastapi import FastAPI, Form
+from fastapi.responses import HTMLResponse
 import requests
+from dotenv import load_dotenv
+import os
+
+# .env faylni yuklaymiz
+load_dotenv()
+
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+CHAT_ID = os.getenv("CHAT_ID")
 
 app = FastAPI()
-
-BOT_TOKEN = "8282184612:AAGc0QCUpyD21zGRM9QPmo9F6juzCaSrxi8"
-CHAT_ID = "6779002546"
 
 def send_to_telegram(data):
     text = (
@@ -38,3 +44,9 @@ def send_request(
 
     send_to_telegram(data)
     return {"status": "success"}
+
+
+@app.get("/", response_class=HTMLResponse)
+def serve_html():
+    with open("sas.html", "r", encoding="utf-8") as f:
+        return f.read()
