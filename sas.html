@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="logo/png" href="logo.png" />
+  <title>TechSupporta – Loyihangiz uchun texnik yordam jamoasi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Loyihangiz uchun doimiy texnik yordam, bugfix, optimizatsiya va monitoring xizmatlari. In-house jamoaga qaraganda arzonroq va moslashuvchan." />
+  <style>
+    :root {
+
+      --primary: #2563eb;
+      --primary-soft: #dbeafe;
+      --dark: #0f172a;
+      --gray: #64748b;
+      --bg: #0b1120;
+      --card: #020617;
+      --border: #1e293b;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0f172a, #020617 55%);
+      color: #e2e8f0;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(16px);
+      background: rgba(2, 6, 23, 0.88);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-badge {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border-radius: 6px;
+      box-shadow: none;
+      padding: 0;
+    }
+
+    .logo-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .logo-text-main {
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      font-size: 18px;
+    }
+
+    .logo-sub {
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 15px;
+    }
+
+    .nav-links a {
+      color: #cbd5f5;
+      opacity: 0.85;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 15px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease,
+        background 0.12s ease, border-color 0.12s ease, opacity 0.12s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: white;
+      box-shadow: 0 14px 40px rgba(37, 99, 235, 0.5);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 50px rgba(37, 99, 235, 0.6);
+    }
+
+    .btn-outline {
+      border-color: rgba(148, 163, 184, 0.4);
+      color: #e2e8f0;
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .nav-phone {
+      display: none;
+      font-size: 14px;
+      color: #94a3b8;
+    }
+
+    .nav-toggle {
+      display: none;
+      border: none;
+      background: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #cbd5f5;
+      margin-bottom: 4px;
+      border-radius: 999px;
+    }
+
+    /* Hero */
+    main {
+      padding: 40px 0 80px;
+    }
+
+    .hero {
+      padding-top: 32px;
+      padding-bottom: 60px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(circle at top left, #1e293b, #020617);
+      font-size: 13px;
+      color: #9ca3af;
+      margin-bottom: 14px;
+    }
+
+    .hero-badge span {
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.15);
+      color: #bfdbfe;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .hero-title {
+      font-size: clamp(30px, 4vw, 42px);
+      line-height: 1.1;
+      font-weight: 750;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #60a5fa, #e5e7eb);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      color: #94a3b8;
+      max-width: 520px;
+      margin-bottom: 22px;
+    }
+
+    .hero-list {
+      display: grid;
+      gap: 6px;
+      font-size: 15px;
+      color: #a5b4fc;
+      margin-bottom: 26px;
+    }
+
+    .hero-list-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-list-item-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .hero-meta {
+      font-size: 13px;
+      color: #64748b;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .hero-meta strong {
+      color: #e2e8f0;
+      font-weight: 600;
+    }
+
+    .hero-meta-divider {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: #334155;
+    }
+
+    /* Hero Right Card */
+    .hero-card {
+      background: radial-gradient(circle at top, #020617, #020617 60%);
+      border-radius: 26px;
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      padding: 16px 16px 18px;
+      box-shadow: 0 28px 80px rgba(15, 23, 42, 0.85);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.18), transparent 60%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .hero-card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .hero-chip {
+      padding: 4px 10px;
+      font-size: 13px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.98);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: #c4b5fd;
+    }
+
+    .hero-chip span {
+      color: #22c55e;
+      font-weight: 600;
+    }
+
+    .hero-tag {
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    .hero-card-body {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .hero-comparison {
+      font-size: 13px;
+      border-radius: 16px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 10px 10px 12px;
+    }
+
+    .hero-comparison-title {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-bottom: 6px;
+    }
+
+    .hero-comparison-row {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .hero-comparison-label {
+      color: #e5e7eb;
+    }
+
+    .hero-comparison-value {
+      text-align: right;
+      font-weight: 600;
+    }
+
+    .hero-comparison-value--bad {
+      color: #f97373;
+    }
+
+    .hero-comparison-value--good {
+      color: #4ade80;
+    }
+
+    .hero-savings {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-top: 6px;
+    }
+
+    .hero-savings span {
+      color: #22c55e;
+      font-weight: 600;
+    }
+
+    .hero-stats {
+      font-size: 13px;
+      border-radius: 16px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(37, 99, 235, 0.55);
+      padding: 10px 10px 11px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .hero-stat {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .hero-stat-label {
+      color: #a5b4fc;
+    }
+
+    .hero-stat-value {
+      font-size: 16px;
+      font-weight: 700;
+      color: #e5e7eb;
+    }
+
+    .hero-footnote {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 6px;
+      text-align: right;
+    }
+
+    /* Sections */
+    section {
+      padding: 32px 0;
+    }
+
+    .section-header {
+      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .section-eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #60a5fa;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 650;
+      letter-spacing: -0.03em;
+    }
+
+    .section-sub {
+      font-size: 15px;
+      color: #94a3b8;
+      max-width: 520px;
+    }
+
+    /* Problem Section */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: #020617;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(15, 23, 42, 1);
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.9);
+      padding: 18px 18px 18px;
+    }
+
+    .card-muted {
+      background: radial-gradient(circle at top, #020617, #020617 65%);
+      border-color: rgba(30, 64, 175, 0.65);
+    }
+
+    .card-title {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .list {
+      display: grid;
+      gap: 6px;
+      font-size: 15px;
+      color: #e5e7eb;
+    }
+
+    .list li {
+      display: flex;
+      gap: 8px;
+    }
+
+    .list li span {
+      font-size: 18px;
+      line-height: 1.2;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 8px 6px;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    .comparison-table th {
+      text-align: left;
+      color: #9ca3af;
+      font-weight: 500;
+    }
+
+    .comparison-table td {
+      color: #e5e7eb;
+    }
+
+    .badge {
+      display: inline-flex;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      background: rgba(37, 99, 235, 0.18);
+      color: #bfdbfe;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .service-card {
+      background: #020617;
+      border-radius: var(--radius-lg);
+      border: 1px solid #1f2937;
+      padding: 14px 14px 16px;
+      font-size: 15px;
+    }
+
+    .service-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+      font-size: 16px;
+    }
+
+    .service-chip {
+      font-size: 12px;
+      color: #60a5fa;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    /* Pricing */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .price-card {
+      background: #020617;
+      border-radius: var(--radius-xl);
+      border: 1px solid #1f2937;
+      padding: 18px 16px 18px;
+      font-size: 15px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .price-card.featured {
+      border-color: rgba(59, 130, 246, 0.8);
+      box-shadow: 0 22px 70px rgba(37, 99, 235, 0.7);
+    }
+
+    .price-name {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .price-tagline {
+      font-size: 14px;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+
+    .price-value {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .price-period {
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 10px;
+    }
+
+    .price-benefits {
+      list-style: none;
+      display: grid;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .price-benefits li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      font-size: 14px;
+    }
+
+    .price-benefits li span {
+      font-size: 17px;
+      line-height: 1.3;
+    }
+
+    .price-note {
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    /* Process */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      font-size: 14px;
+    }
+
+    .process-step {
+      background: #020617;
+      border-radius: var(--radius-lg);
+      border: 1px solid #1f2937;
+      padding: 12px 12px 13px;
+      position: relative;
+    }
+
+    .process-index {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 13px;
+      color: #cbd5f5;
+      margin-bottom: 6px;
+    }
+
+    .process-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+      font-size: 15px;
+    }
+
+    .process-desc {
+      color: #9ca3af;
+      font-size: 14px;
+    }
+
+    /* FAQ */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 20px;
+    }
+
+    .faq-item {
+      border-radius: 14px;
+      border: 1px solid #1f2937;
+      background: #020617;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 10px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .faq-question span {
+      font-weight: 500;
+    }
+
+    .faq-toggle {
+      font-size: 20px;
+      line-height: 1;
+      color: #64748b;
+    }
+
+    .faq-answer {
+      padding: 0 12px 10px;
+      display: none;
+      font-size: 14px;
+      color: #9ca3af;
+      border-top: 1px solid #1f2937;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 22px;
+    }
+
+    .contact-card {
+      background: #020617;
+      border-radius: var(--radius-xl);
+      border: 1px solid #1f2937;
+      padding: 18px 18px 18px;
+      font-size: 15px;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 10px;
+    }
+
+    .field-group {
+      display: grid;
+      gap: 4px;
+    }
+
+    .field-label {
+      font-size: 14px;
+      color: #cbd5f5;
+    }
+
+    .field-hint {
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid #1f2937;
+      background: #020617;
+      padding: 8px 10px;
+      font-family: inherit;
+      font-size: 15px;
+      color: #e2e8f0;
+      outline: none;
+      transition: border-color 0.1s ease, box-shadow 0.1s ease,
+        background 0.1s ease;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.5);
+      background: #020617;
+    }
+
+    .contact-meta {
+      font-size: 15px;
+      color: #9ca3af;
+      display: grid;
+      gap: 10px;
+    }
+
+    .contact-meta strong {
+      color: #e5e7eb;
+    }
+
+    .contact-list {
+      list-style: none;
+      display: grid;
+      gap: 6px;
+      font-size: 15px;
+    }
+
+    .contact-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .contact-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #1f2937;
+      padding: 16px 0 22px;
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #9ca3af;
+      font-size: 14px;
+    }
+
+    .footer-links a:hover {
+      color: #e5e7eb;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-card {
+        order: -1;
+      }
+
+      .problem-grid,
+      .faq-grid,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .pricing-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .process-steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .nav-phone {
+        display: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-phone {
+        display: block;
+      }
+
+      .nav-mobile-open .nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 10px;
+      }
+
+      .nav-mobile-open .nav-cta {
+        display: flex;
+        padding-top: 10px;
+      }
+
+      .hero {
+        padding-top: 24px;
+      }
+
+      .hero-card {
+        border-radius: 22px;
+      }
+
+      .services-grid,
+      .pricing-grid,
+      .process-steps {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 24px;
+      }
+
+      .hero-sub {
+        font-size: 14px;
+      }
+
+      .card,
+      .price-card,
+      .contact-card {
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <div class="logo">
+        <div class="logo-badge">
+          <img src="logo.png" alt="TechSupporta logo" class="logo-img" />
+        </div>
+        <div>
+          <div class="logo-text-main">TechSupporta</div>
+          <div class="logo-sub">Loyihangiz uchun texnik yordam jamoasi</div>
+        </div>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+      </button>
+      <nav style="display:flex;align-items:center;gap:20px;">
+        <div class="nav-links" id="navLinks">
+          <a href="#services">Xizmatlar</a>
+          <a href="#pricing">Narxlar</a>
+          <a href="#process">Jarayon</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Kontakt</a>
+        </div>
+        <div class="nav-cta" id="navCta">
+          <button class="btn btn-outline" onclick="scrollToSection('contact')">
+            15 daqiqalik konsultatsiya
+          </button>
+          <button class="btn btn-primary" onclick="scrollToSection('pricing')">
+            Narxlarni ko‘rish →
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="hero-badge">
+            <span>Texnik support as a service</span>
+            Loyihangizni yakunlagan bo‘lsangiz ham, biz uni tark etmaymiz
+          </div>
+          <h1 class="hero-title">
+            Loyihangizga <span>2K$ lik jamoa o‘rniga</span><br />
+            bitta texnik yordam paketi
+          </h1>
+          <p class="hero-sub">
+            Odatda loyiha tugagach, 4–5 nafar dasturchini texnik yordamda
+            ushlab turish uchun oyiga minglab dollar ketadi. Biz esa bitta
+            jamoa sifatida sizning loyihangizni <strong>48 soat ichida
+            javob beradigan SLA bilan</strong> qo‘llab turamiz.
+          </p>
+
+          <div class="hero-list">
+            <div class="hero-list-item">
+              <div class="hero-list-item-dot"></div>
+              <div>Bugfix, texnik xatoliklar va kichik featurelar – bitta paketda</div>
+            </div>
+            <div class="hero-list-item">
+              <div class="hero-list-item-dot"></div>
+              <div>Monitoring, performance optimizatsiya va xavfsizlik yangilanishlari</div>
+            </div>
+            <div class="hero-list-item">
+              <div class="hero-list-item-dot"></div>
+              <div>In-house jamoaga qaraganda ancha arzon va boshqarish oson</div>
+            </div>
+          </div>
+
+          <div class="hero-ctas">
+            <button class="btn btn-primary" onclick="scrollToSection('contact')">
+              Demo qo‘ng‘iroqga yozilish
+            </button>
+            <button class="btn btn-outline" onclick="scrollToSection('services')">
+              Xizmatlar ro‘yxatini ko‘rish
+            </button>
+          </div>
+
+          <div class="hero-meta">
+            <span><strong>48 soat ichida</strong> birinchi javob</span>
+            <span class="hero-meta-divider"></span>
+            <span>Backend, frontend va DevOps bitta jamoada</span>
+            <span class="hero-meta-divider"></span>
+            <span>Kontrakt: oyma-oy yoki 3 oylik</span>
+          </div>
+        </div>
+
+        <div class="hero-card" aria-hidden="true">
+          <div class="hero-card-inner">
+            <div class="hero-card-header">
+              <div class="hero-chip">
+                Tipik holat: <span>loyiha tugadi</span>
+              </div>
+              <div class="hero-tag">Moliyaviy taqqoslash (oylik)</div>
+            </div>
+            <div class="hero-card-body">
+              <div class="hero-comparison">
+                <div class="hero-comparison-title">In-house texnik support vs TechSupporta</div>
+                <div class="hero-comparison-row">
+                  <div class="hero-comparison-label">In-house jamoa (4–5 dev)</div>
+                  <div class="hero-comparison-value hero-comparison-value--bad">
+                    ≈ $8,000+
+                  </div>
+                </div>
+                <div class="hero-comparison-row">
+                  <div class="hero-comparison-label">TechSupporta paketi</div>
+                  <div class="hero-comparison-value hero-comparison-value--good">
+                    $1,000–$1,500
+                  </div>
+                </div>
+                <div class="hero-savings">
+                  <span>~80% gacha tejash</span> + jamoa boshqaruvi, hiring,
+                  KPI bilan ovora bo‘lmaysiz.
+                </div>
+              </div>
+              <div class="hero-stats">
+                <div class="hero-stat">
+                  <div class="hero-stat-label">Javob vaqti (SLA)</div>
+                  <div class="hero-stat-value">&lt; 48 soat</div>
+                </div>
+                <div class="hero-stat">
+                  <div class="hero-stat-label">Releaseni kuzatish</div>
+                  <div class="hero-stat-value">Har oy / sprint</div>
+                </div>
+                <div class="hero-stat">
+                  <div class="hero-stat-label">Qo‘llab turiladigan stack</div>
+                  <div class="hero-stat-value">Web, API, mobil</div>
+                </div>
+                <div class="hero-footnote">
+                  * SLA va narx portfolio va stackga qarab kelishiladi.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem section -->
+    <section id="problem">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">Muammo</div>
+          <h2 class="section-title">Loyiha tugaydi, lekin texnik risklar tugamaydi</h2>
+          <p class="section-sub">
+            Ko‘p kompaniyalar loyihani ishga tushirgach, dasturchilarning katta
+            qismini bo‘shatadi. Lekin bug, server muammo, performance pasayishi
+            va foydalanuvchilar soni oshishi kabi xavflar doimiy.
+          </p>
+        </div>
+
+        <div class="problem-grid">
+          <div class="card">
+            <h3 class="card-title">Klassik yondashuv: In-house texnik support</h3>
+            <ul class="list">
+              <li>
+                <span>•</span>
+                <div>4–5 nafar dasturchi (backend, frontend, devops)ni ishda ushlab turish.</div>
+              </li>
+              <li>
+                <span>•</span>
+                <div>Oyliklarga qo‘shimcha ravishda: ofis, soliq, HR, hiring xarajatlari.</div>
+              </li>
+              <li>
+                <span>•</span>
+                <div>Ular band bo‘lmasa ham oylik berish kerak – “kutish” davri ham qimmat.</div>
+              </li>
+              <li>
+                <span>•</span>
+                <div>Har safar yangi muammo chiqqanda – ichki jamoani qayta yig‘ish, onboarding.</div>
+              </li>
+            </ul>
+
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Ko‘rsatkich</th>
+                  <th>In-house</th>
+                  <th>TechSupporta</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Oylik xarajat</td>
+                  <td>$8,000+*</td>
+                  <td>$1,000–$1,500</td>
+                </tr>
+                <tr>
+                  <td>Yangi xodimni topish</td>
+                  <td>1–3 oy</td>
+                  <td class="badge">Biz allaqachon tayyormiz</td>
+                </tr>
+                <tr>
+                  <td>Risk</td>
+                  <td>Jamoa ketib qolishi mumkin</td>
+                  <td>Kontrakt bo‘yicha kafolatlangan SLA</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card card-muted">
+            <h3 class="card-title">Bizning yondashuv: “Texnik support as a service”</h3>
+            <ul class="list">
+              <li>
+                <span>✓</span>
+                <div>
+                  <strong>Bir necha full-time dasturchi o‘rniga</strong> bitta kompaniya:
+                  backend, frontend va DevOps bitta paket ichida.
+                </div>
+              </li>
+              <li>
+                <span>✓</span>
+                <div>
+                  SLA bo‘yicha 24–48 soat ichida javob va reaksiya. Kichik
+                  buglar va tezkor fixlar – navbatda ushlab turiladi.
+                </div>
+              </li>
+              <li>
+                <span>✓</span>
+                <div>
+                  Har oy yoki sprint yakunida texnik report: xatoliklar, optimizatsiya,
+                  xavfsizlik va keyingi qadamlar.
+                </div>
+              </li>
+              <li>
+                <span>✓</span>
+                <div>
+                  Narx – <strong>oylik o‘rtacha 1 ta senior o‘rniga</strong> butun texnik support
+                  jamoasi.
+                </div>
+              </li>
+            </ul>
+            <p style="font-size:13px;color:#64748b;margin-top:8px;">
+              * Misol uchun: har bir dasturchi $1,500–$2,000 oylik olsa, 4 nafar
+              dasturchi uchun $6,000–$8,000 dan kam bo‘lmaydi. Biz esa shu
+              xarajatni keskin kamaytiramiz.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">Xizmatlar</div>
+          <h2 class="section-title">Biz nimalarni o‘z zimmamizga olamiz?</h2>
+          <p class="section-sub">
+            Sizning jamoangiz biznes va mahsulotga fokus qiladi, texnik
+            barqarorlik, buglar va performanceni esa biz boshqaramiz.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-chip">Bugfix & texnik support</div>
+            <div class="service-title">Xatoliklar va favqulodda vaziyatlar</div>
+            <p>
+              Productionda chiqqan buglar, API xatoliklari, 500 errorlar,
+              authentication muammolari – SLA bo‘yicha tezkor yechimlar.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-chip">Monitoring</div>
+            <div class="service-title">Server va uptime nazorati</div>
+            <p>
+              Loglar, error tracking, uptime monitoring. Muammo paydo bo‘lsa –
+              sizdan oldin biz ko‘ramiz va reaksiya qilamiz.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-chip">Performance</div>
+            <div class="service-title">Tezlik va optimizatsiya</div>
+            <p>
+              Sezilarli sekinlashgan sahifalar, og‘ir so‘rovlar, kechikayotgan
+              API lar uchun profiling va optimizatsiya.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-chip">DevOps</div>
+            <div class="service-title">Release va infratuzilma</div>
+            <p>
+              Deploy jarayonlarini avtomatlashtirish, CI/CD, containerization
+              (Docker), bazalar va keshlar bilan ishlash.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-chip">Refactoring</div>
+            <div class="service-title">Kod bazasini tartibga keltirish</div>
+            <p>
+              Spagetti kodni modullarga bo‘lish, testlar qo‘shish, dokumentatsiya
+              yuritish va strukturani soddalashtirish.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-chip">Kichik featurelar</div>
+            <div class="service-title">“Mini-feature”lar va tweaklar</div>
+            <p>
+              Katta reliz emas, lekin foydalanuvchilar uchun ahamiyatli bo‘lgan
+              kichik o‘zgarishlar va UI/UX tweaklar.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">Narxlar</div>
+          <h2 class="section-title">In-house jamoaga qaraganda ancha tejamkor</h2>
+          <p class="section-sub">
+            Har bir loyiha uchun alohida hisob-kitob qilamiz, lekin quyidagi
+            paketlar orqali taxminiy diapazonni ko‘rishingiz mumkin.
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+          <div class="price-card">
+            <div class="price-name">Starter</div>
+            <div class="price-tagline">Kichik va o‘rta loyihalar uchun</div>
+            <div class="price-value">$600</div>
+            <div class="price-period">/ oy (yoki so‘m ekvivalenti)</div>
+            <ul class="price-benefits">
+              <li>
+                <span>•</span>
+                <div>Oyiga belgilangan soatgacha texnik support</div>
+              </li>
+              <li>
+                <span>•</span>
+                <div>48 soat ichida ilk javob (SLA)</div>
+              </li>
+              <li>
+                <span>•</span>
+                <div>Bugfix va kichik o‘zgarishlar</div>
+              </li>
+              <li>
+                <span>•</span>
+                <div>Oylik qisqa texnik raport</div>
+              </li>
+            </ul>
+            <button class="btn btn-outline" onclick="scrollToSection('contact')">
+              Paket bo‘yicha so‘rash →
+            </button>
+            <p class="price-note">
+              Odatda MVP, kichik CRM yoki landing+admin loyihalar uchun.
+            </p>
+          </div>
+
+          <div class="price-card featured">
+            <div class="price-name">Growth</div>
+            <div class="price-tagline">Aktiv foydalanuvchisi bor loyihalar</div>
+            <div class="price-value">$1,000</div>
+            <div class="price-period">/ oy (ko‘p hollarda asosiy paket)</div>
+            <ul class="price-benefits">
+              <li>
+                <span>•</span>
+                <div>Prioritet navbat: tezroq reaksiya va ko‘proq soat</div>
+              </li>
+              <li>
+                <span>•</span>
+                <div>Monitoring, loglar va alertlar konfiguratsiyasi</div>
+              </li>
+              <li>
+                <span>•</span>
+                <div>Performance audit va optimizatsiya takliflari</div>
+              </li>
+              <li>
+                <span>•</span>
+                <div>Har oy batafsil texnik report va roadmap</div>
+              </li>
+            </ul>
+            <button class="btn btn-primary" onclick="scrollToSection('contact')">
+              Growth paketini so‘rash
+            </button>
+            <p class="price-note">
+              Ko‘p kompaniyalar aynan shu diapazonda in-house jamoa o‘rniga
+              TechSupporta’ni tanlaydi.
+            </p>
+          </div>
+
+          <div class="price-card">
+            <div class="price-name">Enterprise</div>
+            <div class="price-tagline">Yirik va kritikal tizimlar uchun</div>
+            <div class="price-value">Custom</div>
+            <div class="price-period">/ oy – kelishuv bo‘yicha</div>
+            <ul class="price-benefits">
+              <li>
+                <span>•</span>
+                <div>24/7 on-call support va kengaytirilgan SLA</div>
+              </li>
+              <li>
+                <span>•</span>
+                <div>Bir nechta loyiha va mikroxizmatlar bilan ishlash</div>
+              </li>
+              <li>
+                <span>•</span>
+                <div>Dedicated lead engineer + yo‘l xaritasi</div>
+              </li>
+              <li>
+                <span>•</span>
+                <div>Security audit va rejalashtirilgan stress-testlar</div>
+              </li>
+            </ul>
+            <button class="btn btn-outline" onclick="scrollToSection('contact')">
+              Enterprise bo‘yicha gaplashish
+            </button>
+            <p class="price-note">
+              Moliyaviy va texnik talablaringizga qarab alohida taklif
+              tayyorlaymiz.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section id="process">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">Jarayon</div>
+          <h2 class="section-title">Qo‘shilish qanday bo‘ladi?</h2>
+          <p class="section-sub">
+            Bizga “kalit” berib qo‘yib ketmaysiz – jarayon shaffof, bosqichma-bosqich
+            va raportlar bilan bo‘ladi.
+          </p>
+        </div>
+
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="process-index">1</div>
+            <div class="process-title">Audit & tanishuv</div>
+            <p class="process-desc">
+              Loyiha stacki, kod bazasi, infratuzilma va biznes talablar bilan
+              tanishamiz. Qaysi risklar bor – ro‘yxatga olamiz.
+            </p>
+          </div>
+          <div class="process-step">
+            <div class="process-index">2</div>
+            <div class="process-title">Onboarding & monitoring</div>
+            <p class="process-desc">
+              Repo, server va monitoringga kirishlarni sozlaymiz, loglarni
+              tekshiramiz va dastlabki yaxshilashlarni belgilaymiz.
+            </p>
+          </div>
+          <div class="process-step">
+            <div class="process-index">3</div>
+            <div class="process-title">SLA bo‘yicha ishlash</div>
+            <p class="process-desc">
+              Buglar, kichik featurelar va optimization ishlarini navbat orqali
+              boshqaramiz. Har bir ish yopilganda raport beriladi.
+            </p>
+          </div>
+          <div class="process-step">
+            <div class="process-index">4</div>
+            <div class="process-title">Oylik report & roadmap</div>
+            <p class="process-desc">
+              Oylik texnik report, performans grafigi va keyingi qadamlar
+              bo‘yicha tavsiyalarni berib boramiz.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">FAQ</div>
+          <h2 class="section-title">Ko‘p beriladigan savollar</h2>
+          <p class="section-sub">
+            Bu yerda qisqa javoblar keltirilgan. Batafsil tushuntirish uchun
+            biz bilan short-call qilib gaplashishingiz mumkin.
+          </p>
+        </div>
+
+        <div class="faq-grid">
+          <div>
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Texnik support sizlarda qaysi stacklar bo‘yicha?</span>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-answer">
+                Hozirgi vaqtda asosan web va backend stacklar: Python (Django,
+                DRF, FastAPI), JavaScript/TypeScript (Node.js, Next.js),
+                PostgreSQL, Redis, Docker, Nginx va boshqalar. Loyihangiz boshqa
+                texnologiyada bo‘lsa ham, audit paytida ko‘rib chiqamiz.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Bizga dedi “1K$ ber, texnik yordamni biz qilamiz” — bu nimani o‘z ichiga oladi?</span>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-answer">
+                Bu summaga: bugfix, kichik featurelar, monitoring, oylik report
+                va kelishilgan soatgacha texnik ishlar kiradi. Aniq limitlar va
+                SLA ni kontraktda belgilab qo‘yamiz – hammasi aniq, o‘lchanadigan
+                bo‘ladi.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Bizning ichki jamoamiz bor, baribir kerakmisiz?</span>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-answer">
+                Ha, ko‘p kompaniyalarda ichki jamoa bo‘ladi, lekin ularning
+                asosiy fokuslari yangi featurelar va biznes rejalashtirishda.
+                Texnik supportni bizga outsourcing qilsangiz, ichki jamoa
+                “yangi narsalar”ga e’tibor qaratadi.
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Kodni va serverlarni sizga qanday ishonamiz?</span>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-answer">
+                Biz NDA va alohida shartnoma asosida ishlaymiz. Repo va
+                serverlarga kirish rollar bo‘yicha cheklanadi, barcha
+                o‘zgarishlar git orqali tarixda qoladi. Kerak bo‘lsa, audit
+                loglarini ham yoqib beramiz.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Qanday qilib sinab ko‘rsak bo‘ladi?</span>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-answer">
+                Hozircha sinov muddat yo'q , lekin yaqin orada qo'shishni rejalashtirganmiz. Unda ham boshlanishiga 1 oy
+                sinov muddati bo'ladi.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>“48 soat ichida javob” nimani anglatadi?</span>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-answer">
+                Bu – SLA bo‘yicha kafolatlangan reaksiya vaqti. Demak, siz
+                rasmiy kanal orqali (ticket, email yoki Telegram) muammo
+                yo‘llaganingizdan keyin 48 soat ichida uni qabul qilamiz,
+                tasniflaymiz va yechim rejasini bildiramiz. Favqulodda holatlar
+                uchun alohida SLA kelishiladi.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">Kontakt</div>
+          <h2 class="section-title">Loyihangiz bo‘yicha 15 daqiqalik short-call qilamiz</h2>
+          <p class="section-sub">
+            Quyidagi formani to‘ldiring – 24 soat ichida siz bilan bog‘lanib,
+            loyihangizni qisqacha ko‘rib chiqamiz va texnik support modeli
+            bo‘yicha taklif beramiz.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <form id="contactForm" class="contact-form">
+              <div class="field-group">
+                <label class="field-label" for="name">Ismingiz va familiyangiz</label>
+                <input id="name" name="name" type="text" placeholder="Masalan: Maxsud Toshpulatov" required />
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="company">Kompaniya yoki loyiha nomi</label>
+                <input id="company" name="company" type="text" placeholder="Masalan: Sporta, EVCharge.uz, CRM tizim" />
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="contact">Kontakt (Telegram, telefon yoki email)</label>
+                <input id="contact" name="contact" type="text" placeholder="@username, +998 ** *** ** ** yoki email" required />
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="stack">Texnik stack (ixtiyoriy)</label>
+                <input id="stack" name="stack" type="text" placeholder="Masalan: Django + DRF + Postgres + React" />
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="message">Qisqacha vaziyat</label>
+                <div class="field-hint">
+                  Masalan: “Loyiha ishlayapti, lekin sekin. Hozir 1–2 dev bor, texnik
+                  supportni tashqariga chiqarishni o‘ylayapmiz.”
+                </div>
+                <textarea id="message" name="message" placeholder="Loyihangiz, hozirgi muammolar va bizdan kutilgan natijani yozing" required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary">
+                So‘rovni yuborish
+              </button>
+            </form>
+          </div>
+
+          <div class="contact-meta">
+            <div>
+              <strong>Qanday aloqa sizga qulay?</strong>
+              <ul class="contact-list">
+                <li>
+                  <div class="contact-dot"></div>
+                  <div>Telegram: @toshpulatovm73</div>
+                </li>
+                <li>
+                  <div class="contact-dot"></div>
+                  <div>Telefon: +998 90 314 91 26</div>
+                </li>
+                <li>
+                  <div class="contact-dot"></div>
+                  <div>Email: toshpulatovm73@gmail.com</div>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <strong>Qaysi kompaniyalar uchun?</strong>
+              <ul class="contact-list">
+                <li>
+                  <div class="contact-dot"></div>
+                  <div>Startuplar – jamoani katta qilmasdan turib o‘sish uchun</div>
+                </li>
+                <li>
+                  <div class="contact-dot"></div>
+                  <div>O‘quv markazlari, klinikalar, xizmat ko‘rsatish sohasi CRM/ERP lari</div>
+                </li>
+                <li>
+                  <div class="contact-dot"></div>
+                  <div>Korporativ ichki tizimlar (HR, CRM, ombor, hisob-kitob)</div>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <strong>Keyingi qadam</strong>
+              <p>
+                Formni yuborgandan so‘ng 24 soat ichida siz bilan bog‘lanib,
+                audit uchun 15–30 daqiqalik onlayn uchrashuv belgilaymiz.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> TechSupporta. Barcha huquqlar himoyalangan.</div>
+      <div class="footer-links">
+        <a href="#hero">Bosh sahifa</a>
+        <a href="#services">Xizmatlar</a>
+        <a href="#pricing">Narxlar</a>
+        <a href="#contact">Kontakt</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+
+  document.getElementById("contactForm").addEventListener("submit", async function (e) {
+    e.preventDefault(); // sahifani o'zgarmaslik uchun
+
+    const formData = new FormData(this);
+
+    const response = await fetch("http://localhost:8000/send-request", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (response.ok) {
+      showSuccess();
+      this.reset(); // formani tozalash
+    } else {
+      alert("Xatolik yuz berdi. Keyinroq urinib ko‘ring.");
+    }
+  });
+
+  function showSuccess() {
+    const box = document.createElement("div");
+    box.textContent = "So‘rov muvaffaqiyatli yuborildi! Biz tez orada aloqaga chiqamiz.";
+    box.style.position = "fixed";
+    box.style.bottom = "20px";
+    box.style.right = "20px";
+    box.style.background = "#16a34a";
+    box.style.color = "white";
+    box.style.padding = "12px 18px";
+    box.style.borderRadius = "10px";
+    box.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
+    box.style.fontSize = "15px";
+    box.style.zIndex = "9999";
+
+    document.body.appendChild(box);
+
+    setTimeout(() => {
+      box.remove();
+    }, 3000);
+  }
+
+
+    // Navbar mobile toggle
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+    const navCta = document.getElementById("navCta");
+    const header = document.querySelector(".navbar");
+
+    navToggle.addEventListener("click", () => {
+      header.classList.toggle("nav-mobile-open");
+    });
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      window.scrollTo({
+        top: el.offsetTop - 80,
+        behavior: "smooth",
+      });
+    }
+
+    // FAQ accordion
+    document.querySelectorAll(".faq-item").forEach((item) => {
+      const question = item.querySelector(".faq-question");
+      question.addEventListener("click", () => {
+        const isOpen = item.classList.contains("open");
+        document.querySelectorAll(".faq-item").forEach((i) =>
+          i.classList.remove("open")
+        );
+        if (!isOpen) {
+          item.classList.add("open");
+        }
+      });
+    });
+
+    // Year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
